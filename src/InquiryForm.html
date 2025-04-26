@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Techaj Inquiry Form</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            font-family: Arial;
+            text-align: center;
+            padding: 20px;
+        }
+        select, input {
+            margin: 10px;
+            padding: 8px;
+            width: 300px;
+        }
+    </style>
+    <script>
+        function updateBrands() {
+            var category = document.getElementById("category").value;
+            var brand = document.getElementById("brand");
+            brand.innerHTML = "";
+
+            if (category === "mobile") {
+                var options = ["Apple", "Samsung", "OnePlus", "Xiaomi", "Vivo"];
+            } else if (category === "laptop") {
+                var options = ["Dell", "HP", "Apple", "Asus", "Lenovo"];
+            } else if (category === "bike") {
+                var options = ["Honda", "Hero", "Bajaj", "Yamaha", "Royal Enfield"];
+            } else if (category === "car") {
+                var options = ["Toyota", "Hyundai", "Tata", "Maruti Suzuki", "Kia"];
+            }
+
+            for (var i = 0; i < options.length; i++) {
+                var opt = document.createElement('option');
+                opt.value = options[i];
+                opt.innerHTML = options[i];
+                brand.appendChild(opt);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Techaj Product Inquiry</h1>
+    <form action="SubmitInquiryServlet" method="post">
+        <select id="category" name="category" onchange="updateBrands()" required>
+            <option value="">Select Category</option>
+            <option value="mobile">Mobile</option>
+            <option value="laptop">Laptop</option>
+            <option value="bike">Bike</option>
+            <option value="car">Car</option>
+        </select><br>
+
+        <select id="brand" name="brand" required>
+            <option value="">Select Brand</option>
+        </select><br>
+
+        <input type="text" name="budget" placeholder="Enter Budget" required><br>
+        <input type="text" name="contact" placeholder="Contact Number" required><br>
+        <input type="text" name="location" placeholder="Location" required><br>
+
+        <button type="submit">Submit Inquiry</button>
+    </form>
+    <br><h3>Thanks for Visiting Techaj ©</h3>
+</body>
+</html>

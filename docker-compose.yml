@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: techaj_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: techaj_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - techaj_network
+
+  java_app:
+    build: .
+    container_name: techaj_java_app
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=techaj_db
+    networks:
+      - techaj_network
+
+volumes:
+  mysql_data:
+
+networks:
+  techaj_network:
+    driver: bridge
+

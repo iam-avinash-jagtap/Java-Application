@@ -40,3 +40,4 @@ public class SubmitInquiryServlet extends HttpServlet {
         }
     }
 }
+

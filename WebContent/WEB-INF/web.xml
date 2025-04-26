@@ -8,3 +8,4 @@
         <url-pattern>/SubmitInquiryServlet</url-pattern>
     </servlet-mapping>
 </web-app>
+
